@@ -18,7 +18,7 @@ MAINTAINER bugu
 RUN mkdir -p /opt/app
 WORKDIR /opt/app
 
-COPY /build/libs/dockerbuildauto-1.0.0-SNAPSHOT.jar /opt/app/dockerbuildauto.jar
+COPY dockerbuildauto-1.0.0-SNAPSHOT.jar /opt/app/dockerbuildauto.jar
 
 ENV JVM_OPTIONS="" \
     JAR_NAME="dockerbuildauto.jar"
