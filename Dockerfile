@@ -7,8 +7,7 @@ COPY . /home/gradle/src
 
 WORKDIR /home/gradle/src
 
-RUN ./gradlew build
-
+RUN gradle build --no-daemon
 
 FROM openjdk:8-jre-alpine
 
