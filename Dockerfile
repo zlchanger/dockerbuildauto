@@ -3,11 +3,11 @@ FROM gradle:5.6.0-jdk8 AS build
 MAINTAINER bugu
 
 #在容器内复制Java源代码
-COPY . /home/gradle/src
+COPY --chown=gradle:gradle . /home/gradle/src
 
 WORKDIR /home/gradle/src
 
-RUN gradle build
+RUN gradle build --no-daemon
 
 FROM openjdk:8-jre-alpine
 
