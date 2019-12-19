@@ -1,4 +1,4 @@
-FROM gradle:5.6.0-jdk8-alpine AS build
+FROM gradle:5.6.0-jre8 AS build
 
 MAINTAINER bugu
 
