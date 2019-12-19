@@ -2,8 +2,8 @@ FROM gradle:5.6.0-jdk8 AS build
 
 MAINTAINER bugu
 
-#在容器内复制Java源代码
-COPY --chown=gradle:gradle . /home/gradle/src
+#在容器内复制Java源代码 --chown=gradle:gradle
+COPY . /home/gradle/src
 
 WORKDIR /home/gradle/src
 
