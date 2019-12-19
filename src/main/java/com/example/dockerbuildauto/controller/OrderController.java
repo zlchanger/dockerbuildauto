@@ -19,7 +19,7 @@ public class OrderController {
 
     @GetMapping("/index")
     public ResultVM<String> index() {
-        String message = "docker build one";
+        String message = "docker build two";
         return new ResultVM<>(1L, message, "success", new Date());
     }
 }
