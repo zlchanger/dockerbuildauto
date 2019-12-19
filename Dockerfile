@@ -1,27 +1,23 @@
-#FROM gradle:5.6.0-jre8 as builder
+FROM gradle:5.6.0-jdk8-alpine AS build
 
-#MAINTAINER bugu
+MAINTAINER bugu
 
-#RUN mkdir -p /opt/app
-#WORKDIR /opt/app
+#在容器内复制Java源代码
+COPY --chown=gradle:gradle . /home/gradle/src
 
-#COPY src .
-#COPY build.gradle .
-#打包
-#RUN gradle clean shadowJar
+WORKDIR /home/gradle/src
+
+RUN gradle build --no-daemon
 
 
 FROM openjdk:8-jre-alpine
 
-MAINTAINER bugu
+RUN mkdir -p /app
 
-RUN mkdir -p /opt/app
-WORKDIR /opt/app
-
-COPY dockerbuildauto-1.0.0-SNAPSHOT.jar /opt/app/dockerbuildauto.jar
+COPY --from=build /home/gradle/src/build/libs/*.jar /app/dockerbuildauto.jar
 
 ENV JVM_OPTIONS="" \
-    JAR_NAME="dockerbuildauto.jar"
+    JAR_NAME="/app/dockerbuildauto.jar"
 
 EXPOSE 8888
 
