@@ -20,4 +20,8 @@ ENV JVM_OPTIONS="" \
 
 EXPOSE 8888
 
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 CMD java -Djava.security.egd=file:/dev/./urandom $JVM_OPTIONS -jar $JAR_NAME
+
